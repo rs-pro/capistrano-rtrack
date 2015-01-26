@@ -7,8 +7,10 @@ Send capistrano deploy info to Rocket Tracker
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'capistrano-rtrack'
+gem 'capistrano-rtrack', require: false
 ```
+
+```require: false``` part is *important*
 
 And then execute:
 

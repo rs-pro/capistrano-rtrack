@@ -5,6 +5,6 @@ namespace :rtrack do
     end
   end
 
-  after  'deploy:finished', 'rtrack:after_deploy'
+  after 'deploy:finished', 'rtrack:after_deploy'
 end
 
