@@ -5,18 +5,19 @@ require 'json'
 
 module Capistrano
   module Rtrack
-    def run
-      conn = Faraday.new(url: "http://rtrack.ru/webhooks/capistrano") do |faraday|
-        faraday.response :logger
-        faraday.adapter Faraday.default_adapter
+    def self.run
+      conn = Faraday.new(url: "http://rtrack.ru") do |faraday|
+        faraday.request :url_encoded
       end
-      resp = conn.send :post, {
-        sha: fetch(:current_revision),
+      puts "notifying rtrack, deployed sha #{fetch(:current_revision)} of #{fetch(:rtrack)} to #{fetch(:stage)}"
+      resp = conn.post '/webhooks/capistrano', {
+        sha: fetch(:current_revision) || "",
         app: fetch(:rtrack),
         env: fetch(:stage)
       }
     rescue => e
       puts "Error during rtrack webhook: #{e.message}"
+      #puts e.backtrace
     end
   end
 end
