@@ -2,6 +2,8 @@
 
 Send capistrano deploy info to Rocket Tracker
 
+Sinse Rocket Tracker is our internal task tracker app and is not available publically yet, this gem is of no use to you unless you know what's it for :)
+
 ## Installation
 
 Add this line to your application's Gemfile:
