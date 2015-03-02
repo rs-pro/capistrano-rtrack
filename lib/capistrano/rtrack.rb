@@ -10,9 +10,9 @@ module Capistrano
         faraday.request :url_encoded
         faraday.adapter  Faraday.default_adapter 
       end
-      puts "notifying rtrack, deployed sha #{fetch(:current_revision)} of #{fetch(:rtrack)} to #{fetch(:stage)}"
+      puts "Notifying RTrack, deployed sha #{fetch(:current_revision)} of #{fetch(:rtrack)} to #{fetch(:stage)}"
       resp = conn.post '/webhooks/capistrano', {
-        sha: fetch(:current_revision) || "1b5ad5f",
+        sha: fetch(:current_revision),
         app: fetch(:rtrack),
         env: fetch(:stage)
       }
