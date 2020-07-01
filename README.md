@@ -1,8 +1,8 @@
 # Capistrano::Rtrack
 
-Send capistrano deploy info to Rocket Tracker
+Отправка информации о деплоях из capistrano в rtrack
 
-Sinse Rocket Tracker is our internal task tracker app and is not available publically yet, this gem is of no use to you unless you know what's it for :)
+This is an iternal gem and is of no use to you unless you know what's it for :)
 
 ## Installation
 
@@ -18,21 +18,17 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install capistrano-rtrack
-
 Add to Capfile:
 
     require 'capistrano/rtrack'
 
-Add project id to deploy.rb:
+Добавьте ключ со страницы настроек проекта (внизу страницы) в deploy.rb:
 
-    set :rtrack, 'project-slug-from-rtrack'
+    set :rtrack_token, 'токен'
 
 ## Usage
 
-Перед подключением этого гема НЕОБХОДИМО привязать проект к гитлабу и загрузить начальный список коммитов.
+Перед подключением этого гема НЕОБХОДИМО привязать проект к гитлабy.
 
 ## Contributing
 
