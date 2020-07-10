@@ -61,19 +61,19 @@ end
 namespace :load do
   task :defaults do
     if !File.file?(USER_TOKEN_FILE)
-      puts "Пожалуйста перейдите на страницу настроек проекта и добавьте токен деплоя"
-      puts "в настройки деплоя set :rtrack_token, 'ваш токен'"
-      puts "Он находится внизу раздела настроек 'общие'"
-      raise "rtrack no project api token"
+      puts "Пожалуйста перейдите на страницу https://rtrack.ru/keys и создайте ключ деплоя"
+      puts "при помощи кнопки + Deploy"
+      puts "Ключ необходимо поместить в файл ~/.rtrack-api-token"
+      raise "rtrack no user api token"
     end
     set(:rtrack_user_token, File.read(USER_TOKEN_FILE))
     set(:rtrack_client, -> {
       base_url = fetch(:rtrack_server) || "https://rtrack.ru/"
       token = fetch(:rtrack_token)
       if token.blank?
-        puts "Пожалуйста перейдите на страницу https://rtrack.ru/keys и создайте ключ деплоя"
-        puts "при помощи кнопки + Deploy"
-        puts "Ключ необходимо поместить в файл ~/.rtrack-api-token"
+        puts "Пожалуйста перейдите на страницу настроек проекта и добавьте токен деплоя"
+        puts "в настройки деплоя set :rtrack_token, 'ваш токен'"
+        puts "Он находится внизу раздела настроек 'общие'"
         raise "rtrack no project api token"
       end
       Capistrano::Rtrack::Client.new(base_url, token)
